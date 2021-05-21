@@ -87,7 +87,6 @@ func (t *transactionService) Send(ctx context.Context, request *TxRequest) (txHa
 	if err != nil {
 		return common.Hash{}, err
 	}
-
 	tx, err := prepareTransaction(ctx, request, t.sender, t.backend, nonce)
 	if err != nil {
 		return common.Hash{}, err
@@ -97,9 +96,8 @@ func (t *transactionService) Send(ctx context.Context, request *TxRequest) (txHa
 	if err != nil {
 		return common.Hash{}, err
 	}
-
+ 	// todo
 	t.logger.Tracef("sending transaction %x with nonce %d", signedTx.Hash(), nonce)
-
 	err = t.backend.SendTransaction(ctx, signedTx)
 	if err != nil {
 		return common.Hash{}, err
@@ -177,6 +175,7 @@ func prepareTransaction(ctx context.Context, request *TxRequest, from common.Add
 			return nil, err
 		}
 	} else {
+		// todo 修改gas
 		gasPrice = request.GasPrice
 	}
 

@@ -140,9 +140,9 @@ func (c *factory) VerifyChequebook(ctx context.Context, chequebook common.Addres
 	if !ok || deployed == nil {
 		return errDecodeABI
 	}
-	if !*deployed {
-		return ErrNotDeployedByFactory
-	}
+	//if !*deployed {
+	//	return ErrNotDeployedByFactory
+	//}
 	return nil
 }
 

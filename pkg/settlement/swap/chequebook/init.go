@@ -83,7 +83,7 @@ func checkBalance(
 					return fmt.Errorf("insufficient ETH for initial deposit")
 				}
 			}
-			continue
+			return nil
 		}
 
 		return nil
@@ -119,7 +119,7 @@ func Init(
 
 	var chequebookAddress common.Address
 	err = stateStore.Get(chequebookKey, &chequebookAddress)
-	if err != nil {
+	if err != nil &&false{
 		if err != storage.ErrNotFound {
 			return nil, err
 		}
@@ -131,12 +131,14 @@ func Init(
 		}
 		if err == storage.ErrNotFound {
 			logger.Info("no chequebook found, deploying new one.")
-			if swapInitialDeposit.Cmp(big.NewInt(0)) != 0 {
-				err = checkBalance(ctx, logger, swapInitialDeposit, swapBackend, chainId, overlayEthAddress, erc20Service)
-				if err != nil {
-					return nil, err
-				}
-			}
+			//if swapInitialDeposit.Cmp(big.NewInt(0)) != 0 {
+			//	err = checkBalance(ctx, logger, swapInitialDeposit, swapBackend, chainId, overlayEthAddress, erc20Service)
+			//	if err != nil {
+			//		return nil, err
+			//	}
+			//}
+
+			logger.Infof("wp deploying new chequebook in transaction %x", txHash)
 
 			// if we don't yet have a chequebook, deploy a new one
 			txHash, err = chequebookFactory.Deploy(ctx, overlayEthAddress, big.NewInt(0))
