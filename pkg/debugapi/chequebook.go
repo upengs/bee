@@ -24,7 +24,7 @@ var (
 	errChequebookNoAmount          = "did not specify amount"
 	errChequebookNoWithdraw        = "cannot withdraw"
 	errChequebookNoDeposit         = "cannot deposit"
-	errChequebookInsufficientFunds = "insufficient funds"
+	errChequebookInsufficientFunds = "insufficient funds" //todo
 	errCantLastChequePeer          = "cannot get last cheque for peer"
 	errCantLastCheque              = "cannot get last cheque for all peers"
 	errCannotCash                  = "cannot cash cheque"
